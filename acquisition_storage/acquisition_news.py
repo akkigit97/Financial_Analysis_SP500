@@ -11,12 +11,13 @@ import time
 #from mongoDB_setup import connect_mongo
 
 # MongoDB connection to URI and database and collection config
-username = 'akhilamohan24'  
-password = 'GS2ksl2bQhoiscry'  
+username = 'Add your details'  
+password = 'Add your details'  
 encoded_username = quote_plus(username)
 encoded_password = quote_plus(password)
 
 # Connect to MongoDB
+#replace thr URI with your database if it's a different name. Likewise, change the collection name if it's different.
 uri = f"mongodb+srv://{encoded_username}:{encoded_password}@sp500.7wtsc.mongodb.net/?retryWrites=true&w=majority"
 client = pymongo.MongoClient(uri, ssl=True)
 db = client["Sp500"]    #database name
@@ -29,7 +30,7 @@ collection.delete_many({})
 analyzer = SentimentIntensityAnalyzer()
 
 # NY Times API details
-API_KEY = "DcEwunoNRXFDk9qxicNIW9BilclFWVvQ"  
+API_KEY = "Add your details"  
 BASE_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json"
 
 # Define keywords and date range
