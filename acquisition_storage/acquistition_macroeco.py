@@ -4,8 +4,8 @@ from pymongo import MongoClient
 from urllib.parse import quote_plus
 
 # MongoDB connection setup
-username = 'akhilamohan24'
-password = 'GS2ksl2bQhoiscry'
+username = 'Add your details'
+password = 'Add your details'
 encoded_username = quote_plus(username)
 encoded_password = quote_plus(password)
 
@@ -14,10 +14,10 @@ client = MongoClient(uri, ssl=True)
 db = client["Sp500"]
 collection = db["macroeco"]
 
-print("✅ MongoDB Connection Successful")
+print("MongoDB Connection Successful")
 
 # FRED API details
-FRED_API_KEY = "07c1fcad2cb862a200ae50f16c289b15"
+FRED_API_KEY = "Add your details"
 start_date = "2017-04-01"
 end_date = "2024-04-01"
 
@@ -42,11 +42,11 @@ def fetch_fred_data(series_id, start, end, api_key):
     if response.status_code == 200:
         df = pd.DataFrame(response.json()["observations"])
         if df.empty:
-            print(f"⚠️ No data found for {series_id}")
+            print(f"No data found for {series_id}")
             return None
         return df
     else:
-        print(f"❌ Error fetching {series_id}: {response.status_code}")
+        print(f"Error fetching {series_id}: {response.status_code}")
         return None
 
 # Fetch and prepare data
@@ -61,10 +61,10 @@ for series_id, indicator_name in fred_indicators.items():
         data = data[["Date", "Value", "Indicator"]].dropna()
         all_data.append(data)
 
-# ✅ Merge all indicators into a single DataFrame
+# Merge all indicators into a single DataFrame
 if all_data:
     macroeco_df = pd.concat(all_data)
-    print("✅ Macroeconomic data collected successfully!")
+    print("Macroeconomic data collected successfully!")
 
     # Pivot data to have columns for GDP, Inflation, and Interest Rates
     macroeco_pivot = macroeco_df.pivot(index="Date", columns="Indicator", values="Value").reset_index()
@@ -87,15 +87,15 @@ if all_data:
     # Drop any duplicate rows if they exist
     macroeco_pivot.drop_duplicates(subset=["Date"], inplace=True)
 
-    # ✅ Insert into MongoDB
+    # Insert into MongoDB
     collection.delete_many({})  # Clear old data
     collection.insert_many(macroeco_pivot.to_dict("records"))
 
-    print("✅ Macroeconomic data successfully stored in MongoDB.")
+    print("Macroeconomic data successfully stored in MongoDB.")
 
-    # ✅ Save as Excel for backup
+    # Save as Excel for backup
     macroeco_pivot.to_excel("macroeco_data.xlsx", index=False)
-    print("✅ Data saved as 'macroeco_data.xlsx'")
+    print("Data saved as 'macroeco_data.xlsx'")
 
 else:
-    print("❌ No macroeconomic data to insert.")
+    print("No macroeconomic data to insert.")
