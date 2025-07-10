@@ -5,8 +5,8 @@ from urllib.parse import quote_plus
 import plotly.graph_objects as go
 
 # MongoDB connection setup
-username = 'akhilamohan24'
-password = 'GS2ksl2bQhoiscry'
+username = 'Add your details'
+password = 'Add your details'
 encoded_username = quote_plus(username)
 encoded_password = quote_plus(password)
 
