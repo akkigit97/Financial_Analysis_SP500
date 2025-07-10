@@ -4,8 +4,8 @@ from urllib.parse import quote_plus
 import pymongo
 
 # MongoDB connection to URI and database and collection config
-username = 'akhilamohan24'  
-password = 'GS2ksl2bQhoiscry'  
+username = 'Add your details'  
+password = 'Add your details'  
 encoded_username = quote_plus(username)
 encoded_password = quote_plus(password)
 
