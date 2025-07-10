@@ -112,12 +112,13 @@ data_dict = sp500_data.to_dict("records")
 '''This section handles connecting to MongoDB, a remote online database to store the acquired data'''
 
 # MongoDB connection to URI and database and collection config
-username = 'akhilamohan24'  
-password = 'GS2ksl2bQhoiscry'  
+username = 'Add your details'  
+password = 'Add your details'  
 encoded_username = quote_plus(username)
 encoded_password = quote_plus(password)
 
 # Connect to MongoDB
+#replace the URI with the name of your database if its different
 uri = f"mongodb+srv://{encoded_username}:{encoded_password}@sp500.7wtsc.mongodb.net/?retryWrites=true&w=majority"
 client = pymongo.MongoClient(uri, ssl=True)
 db = client["Sp500"]    #database name
