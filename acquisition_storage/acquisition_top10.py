@@ -5,9 +5,9 @@ from datetime import datetime
 from urllib.parse import quote_plus
 import pymongo
 
-# 🔹 MongoDB Connection Setup
-username = 'akhilamohan24'
-password = 'GS2ksl2bQhoiscry'
+# MongoDB Connection Setup
+username = 'Add your details'
+password = 'Add your details'
 encoded_username = quote_plus(username)
 encoded_password = quote_plus(password)
 
@@ -16,9 +16,9 @@ client = pymongo.MongoClient(uri, ssl=True)
 db = client["Sp500"]  # Database name
 collection = db["Top10_stocks"]  # Collection name
 
-print("✅ Connected to MongoDB successfully.")
+print("Connected to MongoDB successfully.")
 
-# 🔹 Define the top 10 companies in the S&P 500 by market capitalization
+# Define the top 10 companies in the S&P 500 by market capitalization
 top_10_companies = {
     "Apple": "AAPL",
     "Microsoft": "MSFT",
@@ -32,14 +32,14 @@ top_10_companies = {
     "Exxon Mobil": "XOM",
 }
 
-# 🔹 Define the date range
+# Define the date range
 start_date = "2017-04-01"
 end_date = "2024-04-01"
 
 # **Ensure Unique Index in MongoDB (Prevents Duplicate Entries)**
 collection.create_index([("Ticker", pymongo.ASCENDING), ("Date", pymongo.ASCENDING)], unique=True)
 
-# 🔹 Function to handle missing dates and convert to MongoDB records
+# Function to handle missing dates and convert to MongoDB records
 def handle_missing_dates_and_convert(df, ticker, start, end):
     """Ensures all dates are present and fills missing stock data."""
     df.columns = df.columns.get_level_values(0)  # Flatten multi-level columns
@@ -65,15 +65,15 @@ def handle_missing_dates_and_convert(df, ticker, start, end):
 
     return df.to_dict("records")
 
-# 🔹 Fetch and Store Data in MongoDB
+# Fetch and Store Data in MongoDB
 for company, ticker in top_10_companies.items():
-    print(f"📡 Fetching data for {company} ({ticker})...")
+    print(f"Fetching data for {company} ({ticker})...")
     try:
         # Download historical stock data
         data = yf.download(ticker, start=start_date, end=end_date)
 
         if not data.empty:
-            print(f"✅ Data for {company} fetched successfully!")
+            print(f"Data for {company} fetched successfully!")
 
             # Ensure continuous data with backfilled values
             records = handle_missing_dates_and_convert(data, ticker, start_date, end_date)
@@ -87,14 +87,14 @@ for company, ticker in top_10_companies.items():
                         upsert=True  # Insert if no match is found
                     )
                 except Exception as db_error:
-                    print(f"⚠️ Error inserting {ticker} for {record['Date']}: {db_error}")
+                    print(f"Error inserting {ticker} for {record['Date']}: {db_error}")
 
-            print(f"✅ Data for {company} ({ticker}) stored in MongoDB.")
+            print(f"Data for {company} ({ticker}) stored in MongoDB.")
         else:
-            print(f"⚠️ No data available for {company} ({ticker}).")
+            print(f"No data available for {company} ({ticker}).")
     except Exception as e:
-        print(f"❌ Error fetching or processing data for {company} ({ticker}): {e}")
+        print(f"Error fetching or processing data for {company} ({ticker}): {e}")
 
-# ✅ Close MongoDB Connection
+# Close MongoDB Connection
 client.close()
-print("🎯 Data fetching and storing process completed successfully!")
+print("Data fetching and storing process completed successfully!")
