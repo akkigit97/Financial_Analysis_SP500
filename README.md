@@ -1,6 +1,3 @@
-# DAPS_assignment_24
-# SN24242076
-
 This project aims to predict the S&P 500 Index movement using macroeconomic indicators, stock prices, and news sentiment analysis. The model incorporates feature engineering, technical indicators, and machine learning techniques to provide valuable insights into market trends.
 
 How to run the code - Pipeline overview: 
