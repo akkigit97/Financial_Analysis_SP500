@@ -1,0 +1,20 @@
+#things noticed from the data
+1. (data wrangling) There are values missing for certain dates - weekends, holidays (easter, christmas etc)
+The solution for this is to insert the missing dates with values from the previous open market date.
+For example, the value on Saturday and Sunday is going to be the value at close on Friday.
+
+2. Gaps in Opening Prices: Significant news may lead to a "gap" in the index, where it opens at a price significantly higher or lower than the previous close.
+
+3. Key dates in US history and global- elections, covid closure, civil unrest, other big news and how it affected the index.
+This is known as technical analysis in finance.
+
+4. Look for when the top 10 company was replaced in the index.
+
+5. Show the fluctuations in candlestick charts. Mark bull and bear zones. Implusive move and pull back.
+Uptrend and downtrend - 
+Uptrend:if the trend is upwards and there are fluctuations, there may be a local minimum, this is called the pullback. 
+As long as the local pull back after a spike up is still higher than its previous pullback, the market is still in uptrend.
+See youtube video in reference for more info.
+
+6. Information from wall street journal, bloomberg, and other news sources to get information about the key dates in US history - paid services
+

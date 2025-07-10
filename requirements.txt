@@ -1,0 +1,18 @@
+#requirement libraries
+yfinance
+matplotlib
+scikit-learn
+numpy
+pandas
+requests
+pip
+pathlib
+pymongo 
+openpyxl
+seaborn
+plotly
+GoogleNews
+vaderSentiment
+tensorflow
+
+

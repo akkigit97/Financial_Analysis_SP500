@@ -1,0 +1,19 @@
+name: daps_assignment
+
+dependencies:
+  - python = 3.12
+  - numpy
+  - pandas
+  - matplotlib
+  - scikit-learn
+  - requests
+  - yfinance
+  - seaborn
+  - plotly
+  - GoogleNews
+  - vaderSentiment
+  - tensorflow
+  - standardscaler
+  - pip
+  - pip:
+    - -r requirements.txt
